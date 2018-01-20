@@ -1,4 +1,4 @@
-import productSource from 'sources/productSources';
+import getProducts from '../sources/productSource';
 
 export const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS';
 export const LOADING_PRODUCTS = 'LOADING_PRODUCTS';
@@ -15,22 +15,24 @@ export function updateProducts(products) {
 
 export function loadingProducts(products) {
   return {
-    type: LOADING_PRODUCTS,
     meta: {
+      type: LOADING_PRODUCTS,
+      selector: 'products',
       status: LOADING,
     },
   }
 };
 
-export function featchProducts() {
+export function fetchProducts() {
   return async (dispatch) => {
     dispatch(loadingProducts);
 
     try {
-      const products = await productSource.getProducts();
-
+      console.log('actions');
+      const products = await getProducts();
+      console.log(products);
       dispatch(updateProducts(products));
-      
+
     } catch (e) {
       console.log(e);
     }

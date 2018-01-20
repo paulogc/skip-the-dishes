@@ -1,7 +1,7 @@
-import product, { INITIAL_STATE } from './product';
+import products, { INITIAL_STATE } from './products';
 
 describe('products', () => {
   it('should return initial state when state is undefined', () => {
-    expect(product()).toEqual(INITIAL_STATE);
+    expect(products()).toEqual(INITIAL_STATE);
   });
 });

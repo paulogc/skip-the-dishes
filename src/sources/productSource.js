@@ -14,3 +14,5 @@ async function getProducts() {
   console.log(response);
   return response;
 };
+
+export default getProducts;
