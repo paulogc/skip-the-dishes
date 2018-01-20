@@ -1,0 +1,1 @@
+import { fetchProducts } from './productActions';
