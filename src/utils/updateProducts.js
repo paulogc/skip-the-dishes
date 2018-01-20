@@ -1,14 +1,13 @@
-function updateProducts(payload) {
+function updateProducts(payload = { data: [] }) {
   const content = {};
   const ids = [];
 
-  payload.forEach((item) => {
+  payload.data.forEach((item) => {
     const { productID } = item;
     if (!ids.includes(productID)) {
       ids.push(productID);
+      content[productID] = item;
     }
-
-    content[productID] = item;
   });
 
   return { ids, content }

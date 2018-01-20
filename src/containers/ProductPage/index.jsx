@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchProducts } from '../../actions/productActions';
+import TYPE_PRODUCT from '../../constants/communicationType';
+import { UPDATED } from '../../constants/communicationStatus';
 
-const mapStateToProps = ({ products }) => products;
+import { fetchProducts } from '../../actions/productActions';
 
 class ProductPage extends Component {
 
   static propTypes = {
+    isLoading: PropTypes.bool,
     products: PropTypes.shape({
-      ids: PropTypes.arrayOf(PropTypes.object),
+      ids: PropTypes.arrayOf(PropTypes.number),
       content: PropTypes.object,
     }),
     onFetchProducts: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
+    isLoading: true,
     products: { ids: [], content: {} },
   };
 
@@ -25,7 +28,7 @@ class ProductPage extends Component {
   }
 
   render() {
-    console.log(this.props.products);
+    console.log(this.props);
     return (
       <div>Product Page</div>
     );
@@ -33,7 +36,12 @@ class ProductPage extends Component {
 }
 
 export default connect(
-  mapStateToProps,
+  ({ products, appStatus }) => {
+    return {
+      products,
+      isLoading: appStatus[TYPE_PRODUCT] !== UPDATED,
+    };
+  },
   {
     onFetchProducts: fetchProducts,
   },

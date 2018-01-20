@@ -1,4 +1,4 @@
-export default function appStatus(state = {}, action) {
+export default function appStatus(state = {}, action = {}) {
   const {
     meta,
   } = action;
@@ -9,12 +9,11 @@ export default function appStatus(state = {}, action) {
 
   const {
     type,
-    selector,
     status,
   } = meta;
 
   return {
     ...state,
-    [`${type}:${selector}`]: status,
+    [type]: status,
   };
 }
