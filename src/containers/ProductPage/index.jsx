@@ -36,12 +36,10 @@ class ProductPage extends Component {
 }
 
 export default connect(
-  ({ products, appStatus }) => {
-    return {
-      products,
-      isLoading: appStatus[TYPE_PRODUCT] !== UPDATED,
-    };
-  },
+  ({ products, appStatus }) => ({
+    products,
+    isLoading: appStatus[TYPE_PRODUCT] !== UPDATED,
+  }),
   {
     onFetchProducts: fetchProducts,
   },
