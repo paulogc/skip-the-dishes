@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import ProductImage from '../../containers/ProductImage';
 
+import './style.css';
+
 const ProductDescriptionGrid = (props) => {
   const {
     image,
@@ -12,14 +14,17 @@ const ProductDescriptionGrid = (props) => {
   } = props;
 
   return (
-    <div>
-      <ProductImage
-        imageURL={image}
-        productID={productID}
-      />
-      <div>{name}</div>
-      <div>{description || 'NA'}</div>
-      <div>{productID}</div>
+    <div className="product-detail">
+      <div className="image">
+        <ProductImage
+          imageURL={image}
+          productID={productID}
+        />
+      </div>
+      <div className="product-information">
+        <div>{name}</div>
+        <div>{description || 'NA'}</div>
+      </div>
     </div>
   );
 };

@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import loading from '../../loading.gif'; 
+
 import { fetchImage } from './actions';
 
 import { TYPE_PROCUCT_IMAGE } from '../../constants/communicationType';
 import { LOADING } from '../../constants/communicationStatus';
+
+import './style.css';
 
 class ProductImage extends Component {
   static proptype = {
@@ -42,10 +46,10 @@ class ProductImage extends Component {
     } = this.props;
 
     if (isLoading) {
-      return <div>Loading ...</div>
+      return <img alt="" className="product-image" src={loading} />
     }
 
-    return <img alt="" src={src} />
+    return <img alt="" className="product-image" src={src} />
   }
 }
 

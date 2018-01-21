@@ -9,6 +9,8 @@ import { fetchProducts } from './actions';
 import { TYPE_PRODUCT } from '../../constants/communicationType';
 import { UPDATED } from '../../constants/communicationStatus';
 
+import './style.css';
+
 class ProductPage extends Component {
 
   static propTypes = {
@@ -26,7 +28,7 @@ class ProductPage extends Component {
   };
 
   componentDidMount() {
-    if (!this.props.products.length) {
+    if (!this.props.products.ids.length) {
       this.props.onFetchProducts();
     }
   }
