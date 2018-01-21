@@ -11,6 +11,7 @@ const ProductDescriptionGrid = (props) => {
     description,
     name,
     productID,
+    unitsInStock,
   } = props;
 
   return (
@@ -25,15 +26,19 @@ const ProductDescriptionGrid = (props) => {
       <div className="product-information">
         <div>
           <div className="detail-text">Name: {name}</div>
-          <div className="detail-text">Description: {description || 'NA'}</div>
+          <div className="detail-text">Description: {description || 'N/A'}</div>
         </div>
-        <div
-          className="add-buttom"
-          onClick={() => props.onAddToCart(productID)}
-          role="buttom"
-        >
-          +
-        </div>
+        {unitsInStock ?
+          <div
+            className="add-buttom"
+            onClick={() => props.onAddToCart(productID)}
+            role="button"
+          >
+            +
+          </div>
+          :
+          <div>N/A</div>
+        }
       </div>
     </div>
   );
@@ -44,6 +49,7 @@ ProductDescriptionGrid.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   productID: PropTypes.number,
+  unitsInStock: PropTypes.number,
   onAddToCart: PropTypes.func.isRequired,
 };
 

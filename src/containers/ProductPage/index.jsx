@@ -70,6 +70,7 @@ class ProductPage extends Component {
         description,
         image,
         name,
+        unitsInStock,
       } = content[productID];
 
       return (
@@ -80,6 +81,7 @@ class ProductPage extends Component {
           description={description}
           name={name}
           productID={productID}
+          unitsInStock={unitsInStock}
         />
       );
     });

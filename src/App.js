@@ -7,7 +7,7 @@ import store from './store';
 import NavBar from './containers/NavBar';
 import ProductPage from './containers/ProductPage';
 import TopProductsPage from './containers/TopProductsPage';
-import CartPage from './containers/CartPage';
+import YourCartPage from './containers/YourCartPage';
 
 const App = () => (
   <Provider store={store}>
@@ -16,7 +16,7 @@ const App = () => (
           <NavBar />
           <Route exact path="/" component={ProductPage}/>
           <Route path="/top-5" component={TopProductsPage}/>
-          <Route path="/cart" component={CartPage}/>
+          <Route path="/cart" component={YourCartPage}/>
         </div>
     </Router>
   </Provider>
