@@ -19,11 +19,21 @@ const ProductDescriptionGrid = (props) => {
         <ProductImage
           imageURL={image}
           productID={productID}
+          placeholder="Search..."
         />
       </div>
       <div className="product-information">
-        <div>{name}</div>
-        <div>{description || 'NA'}</div>
+        <div>
+          <div className="detail-text">Name: {name}</div>
+          <div className="detail-text">Description: {description || 'NA'}</div>
+        </div>
+        <div
+          className="add-buttom"
+          onClick={() => props.onAddToCart(productID)}
+          role="buttom"
+        >
+          +
+        </div>
       </div>
     </div>
   );
@@ -34,6 +44,7 @@ ProductDescriptionGrid.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   productID: PropTypes.number,
+  onAddToCart: PropTypes.func.isRequired,
 };
 
 ProductDescriptionGrid.defaultProps = {

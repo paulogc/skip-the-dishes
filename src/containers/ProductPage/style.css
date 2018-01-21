@@ -3,7 +3,20 @@
 }
 
 .product-page-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
+.search-input {
+  color: #333;
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #333;
+  border-radius: 7px;
+  outline: none;
+  font-size: 18px;
 }
 
 .product-page-grid {

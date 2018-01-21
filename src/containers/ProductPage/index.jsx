@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import ProductDescriptionGrid from '../../components/ProductDescriptionGrid';
+import InputText from '../../components/InputText';
 
-import { fetchProducts } from './actions';
+import { fetchProducts, addToCart } from './actions';
 
 import { TYPE_PRODUCT } from '../../constants/communicationType';
 import { UPDATED } from '../../constants/communicationStatus';
@@ -19,6 +20,7 @@ class ProductPage extends Component {
       ids: PropTypes.arrayOf(PropTypes.number),
       content: PropTypes.object,
     }),
+    onAddToCart: PropTypes.func.isRequired,
     onFetchProducts: PropTypes.func.isRequired,
   };
 
@@ -27,23 +29,52 @@ class ProductPage extends Component {
     products: { ids: [], content: {} },
   };
 
+  state = { searchText: '' };
+
   componentDidMount() {
     if (!this.props.products.ids.length) {
       this.props.onFetchProducts();
     }
   }
 
+  handleChange = (e) => {
+    this.setState({ searchText: e.target.value });
+  }
+
+  handleFilter() {
+    const { ids, content } = this.props.products;
+    if (!this.state.searchText) {
+      return ids;
+    }
+
+    const firteredIds = [];
+    ids.forEach((productID) => {
+      const productName = content[productID].name.toLowerCase();
+      if (productName.match(this.state.searchText)) {
+        firteredIds.push(productID);
+      }
+    });
+
+    return firteredIds;
+  }
+
+  handleAddToCart = (productID) => {
+    this.props.onAddToCart(productID)
+  }
+
   renderProductDescrition() {
-    const { products } = this.props;
-    return products.ids.map((productID) => {
+    const { content } = this.props.products;
+    const ids = this.handleFilter();
+    return ids.map((productID) => {
       const {
         description,
         image,
         name,
-      } = products.content[productID];
+      } = content[productID];
 
       return (
         <ProductDescriptionGrid
+          onAddToCart={this.handleAddToCart}
           key={productID}
           image={image}
           description={description}
@@ -57,7 +88,14 @@ class ProductPage extends Component {
   render() {
     return (
       <div className="porduct-page">
-        <div className="product-page-header"></div>
+        <div className="product-page-header">
+          <InputText
+            placeholder="Search..."
+            className="search-input"
+            value={this.state.searchText}
+            onChange={e => this.handleChange(e)}
+          />
+        </div>
         <div className="product-page-grid">
           {!this.props.isLoading && this.renderProductDescrition()}
         </div>
@@ -73,5 +111,6 @@ export default connect(
   }),
   {
     onFetchProducts: fetchProducts,
+    onAddToCart: addToCart,
   },
 )(ProductPage);

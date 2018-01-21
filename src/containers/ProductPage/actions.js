@@ -5,6 +5,7 @@ import { LOADING, UPDATED } from '../../constants/communicationStatus';
 
 export const RETRIEVING_PRODUCTS = 'RETRIEVING_PRODUCTS';
 export const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS';
+export const ADD_TO_CART = 'ADD_TO_CART';
 
 const PRODUCTS_URL = 'https://private-3efa8-products123.apiary-mock.com/products';
 
@@ -29,6 +30,17 @@ export function retrievingProducts() {
       type: TYPE_PRODUCT,
       status: LOADING,
       selector: 'all',
+    },
+  };
+};
+
+export function addToCart(productID) {
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      data: {
+        productID,
+      },
     },
   };
 };
