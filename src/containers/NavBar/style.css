@@ -20,3 +20,19 @@ li a {
 li a:hover {
   background-color: rgb(31, 27, 27);
 }
+
+.cart-quantity {
+  background-color: red;
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 20px;
+    width: 30px;
+    bottom: 30px;
+    left: 125px;
+}
+
+.quantity-line {
+  position: relative;
+}
