@@ -1,6 +1,6 @@
-import { UPDATE_PRODUCTS } from '../actions/productActions';
-import updateProducts from '../utils/updateProducts';
-import products, { INITIAL_STATE } from './products';
+import { UPDATE_PRODUCTS } from '../actions';
+import updateProducts from '../../../utils/updateProducts';
+import products, { INITIAL_STATE } from '../reducer';
 
 const ACTION = {
   type: UPDATE_PRODUCTS,

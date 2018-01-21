@@ -2,7 +2,7 @@ import appStatus from './appStatus';
 
 import TYPE_PRODUCT from '../constants/communicationType';
 import { UPDATED, LOADING } from '../constants/communicationStatus';
-import { RETRIEVING_PRODUCTS } from '../actions/productActions';
+import { RETRIEVING_PRODUCTS } from '../containers/ProductPage/actions';
 
 const INITIAL_STATE = { [TYPE_PRODUCT]: LOADING };
 const UPDATED_STATE = { [TYPE_PRODUCT]: UPDATED };

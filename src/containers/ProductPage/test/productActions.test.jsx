@@ -1,11 +1,11 @@
-import TYPE_PRODUCT from '../constants/communicationType';
-import { LOADING, UPDATED } from '../constants/communicationStatus';
+import TYPE_PRODUCT from '../../../constants/communicationType';
+import { LOADING, UPDATED } from '../../../constants/communicationStatus';
 import {
   updateProducts,
   retrievingProducts,
   RETRIEVING_PRODUCTS,
   UPDATE_PRODUCTS
-} from './productActions';
+} from '../actions';
 
 const RETRIEEVING = {
   type: RETRIEVING_PRODUCTS,

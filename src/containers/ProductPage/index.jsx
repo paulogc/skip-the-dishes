@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import TYPE_PRODUCT from '../../constants/communicationType';
 import { UPDATED } from '../../constants/communicationStatus';
 
-import { fetchProducts } from '../../actions/productActions';
+import { fetchProducts } from './actions';
 
 class ProductPage extends Component {
 

@@ -1,5 +1,5 @@
-import updateProducts from '../utils/updateProducts';
-import { UPDATE_PRODUCTS } from '../actions/productActions';
+import updateProducts from '../../utils/updateProducts';
+import { UPDATE_PRODUCTS } from './actions';
 
 
 export const INITIAL_STATE = {

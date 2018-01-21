@@ -2,7 +2,7 @@ import {
   combineReducers,
 } from 'redux';
 
-import products from './products';
+import products from '../containers/ProductPage/reducer';
 import appStatus from './appStatus';
 
 const reducers = combineReducers({

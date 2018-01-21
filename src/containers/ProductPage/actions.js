@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import TYPE_PRODUCT from '../constants/communicationType';
-import { LOADING, UPDATED } from '../constants/communicationStatus';
+import TYPE_PRODUCT from '../../constants/communicationType';
+import { LOADING, UPDATED } from '../../constants/communicationStatus';
 
 export const RETRIEVING_PRODUCTS = 'RETRIEVING_PRODUCTS';
 export const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS';

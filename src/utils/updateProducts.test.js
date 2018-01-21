@@ -1,6 +1,6 @@
 import updateProducts from './updateProducts';
 
-import { INITIAL_STATE } from '../reducers/products';
+import { INITIAL_STATE } from '../containers/ProductPage/reducer';
 
 const PAYLOAD = {
   data: [
