@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import TYPE_PRODUCT from '../../constants/communicationType';
+import { TYPE_PRODUCT } from '../../constants/communicationType';
 import { LOADING, UPDATED } from '../../constants/communicationStatus';
 
 export const RETRIEVING_PRODUCTS = 'RETRIEVING_PRODUCTS';
@@ -14,6 +14,7 @@ export function updateProducts(products) {
     meta: {
       type: TYPE_PRODUCT,
       status: UPDATED,
+      selector: 'all',
     },
     payload: {
       data: products,
@@ -27,6 +28,7 @@ export function retrievingProducts() {
     meta: {
       type: TYPE_PRODUCT,
       status: LOADING,
+      selector: 'all',
     },
   };
 };
@@ -36,9 +38,9 @@ export function fetchProducts() {
     dispatch(retrievingProducts);
 
     try {
-      const products = await axios.get(PRODUCTS_URL).then((response) => {
-        return response.data.products;
-      });
+      const response = await axios.get(PRODUCTS_URL);
+      const products = response.data.products;
+  
       dispatch(updateProducts(products));
     } catch (e) {
       console.log(e);

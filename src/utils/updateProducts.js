@@ -1,4 +1,4 @@
-function updateProducts(payload = { data: [] }) {
+export function updateProducts(payload = { data: [] }) {
   const content = {};
   const ids = [];
 
@@ -10,7 +10,24 @@ function updateProducts(payload = { data: [] }) {
     }
   });
 
-  return { ids, content }
+  return { ids, content };
 };
 
-export default updateProducts;
+export function updateImage(state, payload) {
+  const {
+    ids,
+    content,
+  } = state;
+
+  const {
+    productID,
+    imageSrc,
+  } = payload.data;
+
+  content[productID] = {
+    ...content[productID],
+    imageSrc,
+  };
+
+  return { ids, content };
+}

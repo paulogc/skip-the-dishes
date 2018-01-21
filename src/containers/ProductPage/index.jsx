@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import TYPE_PRODUCT from '../../constants/communicationType';
-import { UPDATED } from '../../constants/communicationStatus';
+import ProductDescriptionGrid from '../../components/ProductDescriptionGrid';
 
 import { fetchProducts } from './actions';
+
+import { TYPE_PRODUCT } from '../../constants/communicationType';
+import { UPDATED } from '../../constants/communicationStatus';
 
 class ProductPage extends Component {
 
@@ -24,13 +26,40 @@ class ProductPage extends Component {
   };
 
   componentDidMount() {
-    this.props.onFetchProducts();
+    if (!this.props.products.length) {
+      this.props.onFetchProducts();
+    }
+  }
+
+  renderProductDescrition() {
+    const { products } = this.props;
+    return products.ids.map((productID) => {
+      const {
+        description,
+        image,
+        name,
+      } = products.content[productID];
+
+      return (
+        <ProductDescriptionGrid
+          key={productID}
+          image={image}
+          description={description}
+          name={name}
+          productID={productID}
+        />
+      );
+    });
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>Product Page</div>
+      <div className="porduct-page">
+        <div className="product-page-header"></div>
+        <div className="product-page-grid">
+          {!this.props.isLoading && this.renderProductDescrition()}
+        </div>
+      </div>
     );
   }
 }
@@ -38,7 +67,7 @@ class ProductPage extends Component {
 export default connect(
   ({ products, appStatus }) => ({
     products,
-    isLoading: appStatus[TYPE_PRODUCT] !== UPDATED,
+    isLoading: appStatus[`${TYPE_PRODUCT}:all`] !== UPDATED,
   }),
   {
     onFetchProducts: fetchProducts,

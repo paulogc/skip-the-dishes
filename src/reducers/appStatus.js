@@ -10,10 +10,11 @@ export default function appStatus(state = {}, action = {}) {
   const {
     type,
     status,
+    selector,
   } = meta;
 
   return {
     ...state,
-    [type]: status,
+    [`${type}:${selector}`]: status,
   };
 }
