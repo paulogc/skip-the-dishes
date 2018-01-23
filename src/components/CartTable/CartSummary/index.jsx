@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const CartSummary = ({ total }) => <h1>Total Price: {total}$</h1>;
+const CartSummary = ({ total }) => <h1 className="cart-summary-text">Total Price: {total}$</h1>;
 
 CartSummary.propTypes = {
   total: PropTypes.number,

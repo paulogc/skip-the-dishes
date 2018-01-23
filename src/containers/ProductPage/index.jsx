@@ -50,7 +50,7 @@ class ProductPage extends Component {
     const firteredIds = [];
     ids.forEach((productID) => {
       const productName = content[productID].name.toLowerCase();
-      if (productName.match(this.state.searchText)) {
+      if (productName.match(this.state.searchText.toLocaleLowerCase())) {
         firteredIds.push(productID);
       }
     });
@@ -97,6 +97,9 @@ class ProductPage extends Component {
             value={this.state.searchText}
             onChange={e => this.handleChange(e)}
           />
+          <div className="grid-view">
+            Grid
+          </div>
         </div>
         <div className="product-page-grid">
           {!this.props.isLoading && this.renderProductDescrition()}

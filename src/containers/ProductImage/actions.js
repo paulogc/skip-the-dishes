@@ -42,7 +42,6 @@ export function fetchImage({ productID, imageURL }) {
 
     try {
       const response = await axios.get(imageURL);
-      console.log(response);
       const src = response.data;
 
       dispatch(updateImage({ src, productID }));
