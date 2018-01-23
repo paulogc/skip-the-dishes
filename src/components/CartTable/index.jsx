@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CartRow from './CartRow';
+import CartSummary from './CartSummary';
+
+import calculateTotalPrice from '../../utils/calculateTotalPrice';
 
 import './style.css';
 
@@ -22,20 +25,25 @@ const CartTable = (props) => {
   });
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Product Name</th>
-          <th>Price</th> 
-          <th>Q-ty</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {items}
-      </tbody>
-    </table>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product Name</th>
+            <th>Price</th> 
+            <th>Q-ty</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {items}
+        </tbody>
+      </table>
+      <CartSummary
+        total={calculateTotalPrice(props.cartItems)}
+      />
+    </div>
   );
 };
 

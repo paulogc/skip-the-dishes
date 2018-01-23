@@ -71,14 +71,16 @@ class YourCartPage extends Component {
     return (
       <div className="you-cart-page">
         <h1>Your Cart</h1>
-        <div>
+        {cartItems.ids.length ? 
           <CartTable
             cartItems={cartItems}
             onDecreseQuantity={this.handleDecreaseQuantity}
             onIncreaseQuantity={this.handleIncreaseQuantity}
             onRemoveItemFromCart={this.handleRemoveItemFromCart}
           />
-        </div>
+          :
+          <h2>There is no products in your cart</h2>
+        }
       </div>
     );
   }

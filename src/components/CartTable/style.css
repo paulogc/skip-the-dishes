@@ -4,3 +4,8 @@ table {
   margin: auto;
   border-bottom: 4px solid #333;
 }
+
+td {
+  padding-right: 8px;
+  padding-left: 8px;
+}
