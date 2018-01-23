@@ -14,6 +14,9 @@ const CartTable = (props) => {
       <CartRow
         key={id}
         item={item}
+        onDecreseQuantity={props.onDecreseQuantity}
+        onIncreaseQuantity={props.onIncreaseQuantity}
+        onRemoveItemFromCart={props.onRemoveItemFromCart}
       />
     );
   });
@@ -36,11 +39,18 @@ const CartTable = (props) => {
   );
 };
 
-CartTable.propType = {
+CartTable.propTypes = {
   cartItems: PropTypes.shape({
     ids: PropTypes.arrayOf(PropTypes.number),
     content: PropTypes.object,
   }),
+  onDecreseQuantity: PropTypes.func.isRequired,
+  onIncreaseQuantity: PropTypes.func.isRequired,
+  onRemoveItemFromCart: PropTypes.func.isRequired,
+}
+
+CartTable.defaultProps = {
+  cartItems: { ids: [], content: {} },
 }
 
 export default CartTable;

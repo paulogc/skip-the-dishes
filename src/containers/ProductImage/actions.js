@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import defaultImage from '../../default-image.jpg';
+import defaultImage from '../../assets/default-image.jpg';
 import { TYPE_PROCUCT_IMAGE } from '../../constants/communicationType';
 import { LOADING, UPDATED } from '../../constants/communicationStatus';
 
@@ -41,12 +41,7 @@ export function fetchImage({ productID, imageURL }) {
     dispatch(retrievingImage(productID));
 
     try {
-      const request = axios.create({
-        baseURL: imageURL,
-        timeout: 20000,
-        headers: {'Access-Control-Allow-Origin': '*' }
-      });
-      const response = await request.get(imageURL);
+      const response = await axios.get(imageURL);
       console.log(response);
       const src = response.data;
 

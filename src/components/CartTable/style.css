@@ -2,4 +2,5 @@ table {
   font-size: 22px;
   text-align: center;
   margin: auto;
+  border-bottom: 4px solid #333;
 }

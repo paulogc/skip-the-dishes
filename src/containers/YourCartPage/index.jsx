@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { updateQuantity } from './actions';
+import { updateQuantity, removeFromCart } from './actions';
 
 import CartTable from '../../components/CartTable';
 
@@ -19,6 +19,8 @@ class YourCartPage extends Component {
       ids: PropTypes.arrayOf(PropTypes.number),
       content: PropTypes.object,
     }),
+    onChangeQuantity: PropTypes.func.isRequired,
+    onRemoveItemFromCart: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -46,8 +48,22 @@ class YourCartPage extends Component {
     return { ids, content };
   }
 
-  handleUpdateQuantity = (productID, quantity) => {
-    console.log(productID, quantity);
+  handleRemoveItemFromCart = (productID) => {
+    this.props.onRemoveItemFromCart(productID)
+  }
+
+  handleIncreaseQuantity = (productID, quantity, unitsInStock) => {
+    if (quantity < unitsInStock) {
+      const newQuantity = quantity + 1;
+      this.props.onChangeQuantity({ productID, quantity: newQuantity });
+    }
+  }
+
+  handleDecreaseQuantity = (productID, quantity) => {
+    if (quantity > 1) {
+      const newQuantity = quantity - 1;
+      this.props.onChangeQuantity({ productID, quantity: newQuantity });
+    }
   }
 
   render() {
@@ -58,6 +74,9 @@ class YourCartPage extends Component {
         <div>
           <CartTable
             cartItems={cartItems}
+            onDecreseQuantity={this.handleDecreaseQuantity}
+            onIncreaseQuantity={this.handleIncreaseQuantity}
+            onRemoveItemFromCart={this.handleRemoveItemFromCart}
           />
         </div>
       </div>
@@ -69,5 +88,6 @@ export default connect(
   ({ cart, products }) => ({ cart, products }),
   {
     onChangeQuantity: updateQuantity,
+    onRemoveItemFromCart: removeFromCart,
   },
 )(YourCartPage);

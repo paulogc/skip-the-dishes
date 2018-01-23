@@ -1,38 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import closeButton from '../../../assets/close-button.png';
+
 import './style.css'
 
-const CartRow = ({ item, onChangeQuantity }) => {
+const CartRow = ({ item, onDecreseQuantity, onIncreaseQuantity, onRemoveItemFromCart }) => {
   const {
     name,
     imageSrc,
     quantity,
+    productID,
     unitPrice,
     unitsInStock,
   } = item;
 
-  const itemsLeft = unitsInStock - quantity;
   return (
     <tr>
       <td>
-        <img alt="" className="cart-image" src={imageSrc} />
+        <img alt="" className="row-cart-image" src={imageSrc} />
       </td>
       <td>
         <div>{name}</div>
-        <div className="items-left">Items left in stock: {itemsLeft}</div>
+        <div className="row-items-left">Items left in stock: {unitsInStock}</div>
       </td>
       <td>Price: {unitPrice}$</td>
-      <td>{quantity}</td>
       <td>
-        <input
-          type="number"
-          name="quantity"
-          min="1"
-          max={unitsInStock}
-          value={quantity}
-          onChange={onChangeQuantity}
-        />
+        <div className="row-input-button">
+          <input
+            name="quantity"
+            min="1"
+            max={unitsInStock}
+            value={quantity}
+            readOnly
+          />
+          <div className="row-buttons">
+            <button
+              className="row-plus-button"
+              onClick={() => onIncreaseQuantity(productID, quantity, unitsInStock)}
+            >
+              +
+            </button>
+            <button
+              className="row-minus-button"
+              onClick={() => onDecreseQuantity(productID, quantity)}
+            >
+              -
+            </button>
+          </div>
+        </div>
+      </td>
+      <td>
+        <img
+          role="button"
+          onClick={() => onRemoveItemFromCart(productID)}
+          alt=""
+          className="row-close-image"
+          src={closeButton} />
       </td>
     </tr>
   );
@@ -49,7 +73,9 @@ CartRow.propTypes = {
     unitPrice: PropTypes.number,
     unitsInStock: PropTypes.number,
   }),
-  onChangeQuantity: PropTypes.func.isRequired,
+  onDecreseQuantity: PropTypes.func.isRequired,
+  onIncreaseQuantity: PropTypes.func.isRequired,
+  onRemoveItemFromCart: PropTypes.func.isRequired,
 };
 
 CartRow.defaultProps = {
