@@ -24,4 +24,19 @@ const ProductRow = ({
   </tr>
 );
 
+ProductRow.propTypes = {
+  description: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.number,
+  price: PropTypes.number,
+  onAddItem: PropTypes.func.isRequired,
+};
+
+ProductRow.defaultProps = {
+  description: '',
+  name: '',
+  id: null,
+  price: null,
+};
+
 export default ProductRow;
