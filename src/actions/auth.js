@@ -2,7 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 import { API_ENDPOINT, API_VERSION } from '../constants';
-import { AUTH, AUTH_LOADING, AUTH_ERROR } from '../constants/auth';
+import { AUTH, AUTH_LOADING, AUTH_ERROR, AUTH_LOGOUT } from '../constants/auth';
 
 export function authLoading() {
   return {
@@ -39,3 +39,9 @@ export function auth({ email, password }) {
     }
   };
 };
+
+export function logout() {
+  return {
+    type: AUTH_LOGOUT,
+  };
+}

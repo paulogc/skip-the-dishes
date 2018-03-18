@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link  } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
-const CustomNav = ({ ids, authenticated }) => {
+import { logout } from '../actions/auth';
+
+const CustomNav = ({ ids, authenticated, onLogout }) => {
   if (!authenticated) {
     return null;
   }
@@ -15,19 +17,14 @@ const CustomNav = ({ ids, authenticated }) => {
           <Link to="/cousines">Home</Link>
         </Navbar.Brand>
       </Navbar.Header>
-      <Nav key="cart-lin">
-        <Navbar.Brand>
-          <Link to="/cart">Your Cart</Link>
-        </Navbar.Brand>
-      </Nav>
       <Nav key="cart-items">
         <Navbar.Brand>
-          Items in your cart: {ids.length}
+        <Link to="/cart">Items in your cart: {ids.length}</Link>
         </Navbar.Brand>
       </Nav>
       <Nav pullRight>
         <Navbar.Brand>
-          <Link to="/">Logout</Link>
+          <Link to="/" onClick={onLogout}>Logout</Link>
         </Navbar.Brand>
       </Nav>
     </Navbar>
@@ -35,5 +32,6 @@ const CustomNav = ({ ids, authenticated }) => {
 };
 
 export default connect(
-  ({ cartReducer, authReducer }) => ({ ...cartReducer, ...authReducer }))
-(CustomNav);
+  ({ cartReducer, authReducer }) => ({ ...cartReducer, ...authReducer }),
+  { onLogout: logout },
+)(CustomNav);

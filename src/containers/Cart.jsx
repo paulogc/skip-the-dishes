@@ -4,7 +4,17 @@ import PropTypes from 'prop-types';
 
 import ProductTable from '../components/ProductTable';
 
+import { normalizeOrder } from '../utils/normalizeOrder';
 import { removeProduct } from '../actions/cart';
+
+const calculateTotal = (products) => {
+  const total = 0;
+  products.forEach(product => total += product.price);
+  return total;
+};
+
+const getProductsArray = (products) =>
+  Object.values(content).map(product => product.product);
 
 class Cart extends Component {
   static propTypes = {
@@ -23,16 +33,22 @@ class Cart extends Component {
   handleRemoveProduct = (id) => {
     this.props.onRemoveProduct(id);
   }
+  
+  handleOrderSubmit = () => {
+    const { content } = this.props;
+    const products = getProductsArray(content);
+    let total = calculateTotal(products);
+
+    const order = normalizeOrder(products, null, total);
+  }
 
   render() {
     const { content } = this.props;
-    const products = Object.values(content).map(product => product.product);
-    let total = 0;
-    
-    products.forEach(product => total += product.price);
+    const products = getProductsArray(content);
+    let total = calculateTotal(products);
     
     if (!products.length) {
-      return <h2>There no products in your cart</h2>
+      return <h2>There are no products in your cart</h2>
     }
 
     return (
