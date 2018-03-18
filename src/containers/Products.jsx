@@ -47,9 +47,6 @@ class Products extends Component {
           products={products}
           action={this.handleAddProduct}
         />
-        <Link to="/cart">
-          <h3>Go to cart</h3>
-        </Link>
       </div>
     );
   }

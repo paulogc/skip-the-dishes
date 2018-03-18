@@ -8,11 +8,13 @@ import Auth from './containers/Auth';
 import Cousines from './containers/Cousines';
 import Products from './containers/Products';
 import Cart from './containers/Cart';
+import Nav from './containers/Nav';
 
 const App = () => (
   <Provider store={store}>
       <Router>
         <div>
+          <Nav />
           <Switch>
             <Route path="/" exact component={Auth} />
             <Route path="/cousines" exact component={Cousines} />

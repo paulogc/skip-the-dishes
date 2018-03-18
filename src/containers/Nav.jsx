@@ -1,28 +1,31 @@
 import React from 'react';
 import { Link  } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Navbar, NavItem, MenuItem } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
-const Nav = (props) =>  {
-  const cartItemsQuantity = 3;
+const CustomNav = ({ ids }) => (
+  <Navbar>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <Link to="/cousines">Home</Link>
+      </Navbar.Brand>
+    </Navbar.Header>
+    <Nav key="cart-lin">
+      <Navbar.Brand>
+        <Link to="/cart">Your Cart</Link>
+      </Navbar.Brand>
+    </Nav>
+    <Nav key="cart-items">
+      <Navbar.Brand>
+        Items in your cart: {ids.length}
+      </Navbar.Brand>
+    </Nav>
+    <Nav pullRight>
+      <Navbar.Brand>
+        <Link to="/">Logout</Link>
+      </Navbar.Brand>
+    </Nav>
+  </Navbar>
+);
 
-  return (
-    <Navbar>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <Link to="/">Home</Link>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Nav>
-        <NavItem eventKey={1} href="#">
-          Link
-        </NavItem>
-        <NavItem eventKey={2} href="#">
-          Link
-        </NavItem>  
-      </Nav>
-    </Navbar>
-  );
-};
-
-export default Nav;
+export default connect(({ cartReducer }) => ({ ...cartReducer }))(CustomNav);

@@ -13,7 +13,7 @@ class Cousines extends Component {
     products: PropTypes.arrayOf(PropTypes.object).isRequired,
     error: PropTypes.bool.isRequired,
     loading: PropTypes.bool.isRequired,
-    onLoadProducts: PropTypes.func.isRequired,
+    onLoadCousines: PropTypes.func.isRequired,
     history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   }
 
