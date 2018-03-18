@@ -8,12 +8,12 @@ import { normalizeOrder } from '../utils/normalizeOrder';
 import { removeProduct } from '../actions/cart';
 
 const calculateTotal = (products) => {
-  const total = 0;
+  let total = 0;
   products.forEach(product => total += product.price);
   return total;
 };
 
-const getProductsArray = (products) =>
+const getProductsArray = (content) =>
   Object.values(content).map(product => product.product);
 
 class Cart extends Component {

@@ -18,7 +18,8 @@ export function normalizerProduct(products) {
     const {
       id,
       price,
-    }
+    } = product;
+
     return {
       id,
       orderId: 1,
