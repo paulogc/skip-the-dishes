@@ -1,1 +1,1 @@
-Skip dishes
+Skip the dishes
