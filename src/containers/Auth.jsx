@@ -80,10 +80,12 @@ class Auth extends Component {
           >
             Entrar
           </Button>
-          {error &&
-            <Label bsStyle="danger">Invalid password or email</Label>
-          }
         </form>
+        {error &&
+          <h1>
+            <Label bsStyle="danger">Invalid password or email</Label>
+          </h1>
+        }
         {loading &&
           <img src={loadingGif} />
         }

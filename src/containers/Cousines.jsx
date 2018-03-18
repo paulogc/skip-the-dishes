@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { products } from '../actions/products';
 import { cousines } from '../actions/cousines';
 
-class Products extends Component {
+import loadingGif from '../assets/loading_spinner.gif';
+
+import CousineTable from '../components/CousineTable';
+
+class Cousines extends Component {
   static propTypes = {
     products: PropTypes.arrayOf(PropTypes.object).isRequired,
     error: PropTypes.bool.isRequired,
@@ -15,29 +18,40 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.products.length) {
-      this.props.onLoadProducts();
+    if (!this.props.cousines.length) {
       this.props.onLoadCousines();
     }
   }
 
+  handleSelectCousine = (cousineId) => {
+    this.props.history.push(`cousine/${cousineId}/products`);
+  }
+
   render() {
+    const { cousines, loading } = this.props.cousines;
+
+    if (loading) {
+      return (
+        <img src={loadingGif} />
+      );
+    }
+
     return (
-      <div>Propducts</div>
+      <CousineTable
+        onSelectCousine={this.handleSelectCousine}
+        cousines={cousines}
+      />
     );
   }
 }
 
 export default connect(
   ({
-    productsReducer,
     cousinesReducer,
   }) => ({
-    products: productsReducer,
     cousines: cousinesReducer,
   }),
   {
-    onLoadProducts: products,
     onLoadCousines: cousines,
   }
-)(Products);
+)(Cousines);
