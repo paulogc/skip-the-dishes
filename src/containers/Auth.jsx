@@ -23,7 +23,7 @@ class Auth extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.loading && !nextProps.loading && !nextProps.error) {
-      this.props.history.push('/products');
+      this.props.history.push('/cousines');
     }
   }
 
@@ -87,7 +87,7 @@ class Auth extends Component {
           </h1>
         }
         {loading &&
-          <img src={loadingGif} />
+          <img alt="" src={loadingGif} />
         }
       </div>
     );

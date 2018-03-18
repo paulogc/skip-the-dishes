@@ -32,7 +32,7 @@ class Cousines extends Component {
 
     if (loading) {
       return (
-        <img src={loadingGif} />
+        <img alt="" src={loadingGif} />
       );
     }
 

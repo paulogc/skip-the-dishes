@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
 const ProductRow = ({
+  buttonLabel,
   description,
   id,
   name,
   price,
-  onAddItem,
+  action,
 }) => (
   <tr>
     <td></td>
@@ -16,23 +17,25 @@ const ProductRow = ({
     <td>{price}</td>
     <td>
       <Button
-        onClick={() => onAddItem(id)}
+        onClick={() => action(id)}
       >
-        Add
+        {buttonLabel}
       </Button>
     </td>
   </tr>
 );
 
 ProductRow.propTypes = {
+  buttonLabel: PropTypes.string,
   description: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.number,
   price: PropTypes.number,
-  onAddItem: PropTypes.func.isRequired,
+  action: PropTypes.func.isRequired,
 };
 
 ProductRow.defaultProps = {
+  buttonLabel: 'Add',
   description: '',
   name: '',
   id: null,

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Link  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
 
 import { products } from '../actions/products';
 import { cousines } from '../actions/cousines';
+import { addProduct } from '../actions/cart';
 
-import ProductRow from '../components/ProductRow';
+import ProductTable from '../components/ProductTable';
 
-class ProductTable extends Component {
+class Products extends Component {
   static propTypes = {
     products: PropTypes.arrayOf(PropTypes.object),
     cousine: PropTypes.shape({ name: PropTypes.string }), 
@@ -31,35 +32,24 @@ class ProductTable extends Component {
     }
   }
 
+  handleAddProduct = (id) => {
+    const product = this.props.products.find(product => product.id === id);
+    this.props.onAddProduct({ id, quantity: 1, product });
+  }
+
   render() {
     const { products, cousine } = this.props;
     
     return (
       <div className="propduct-table">
         <h2>{cousine.name}</h2>
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Plate</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              products.map(product =>
-                <ProductRow
-                  key={`product-row-${product.id}`}
-                  description={product.description}
-                  name={product.name}
-                  price={product.price}
-                />
-              )
-            }
-          </tbody>
-        </Table>
+        <ProductTable
+          products={products}
+          action={this.handleAddProduct}
+        />
+        <Link to="/cart">
+          <h3>Go to cart</h3>
+        </Link>
       </div>
     );
   }
@@ -84,5 +74,6 @@ export default connect(
   {
     onLoadCousines: cousines,
     onLoadProducts: products,
+    onAddProduct: addProduct,
   }
-)(ProductTable);
+)(Products);

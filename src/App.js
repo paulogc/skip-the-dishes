@@ -6,16 +6,20 @@ import store from './store';
 
 import Auth from './containers/Auth';
 import Cousines from './containers/Cousines';
-import ProductTable from './containers/ProductTable';
+import Products from './containers/Products';
+import Cart from './containers/Cart';
 
 const App = () => (
   <Provider store={store}>
       <Router>
+        <div>
           <Switch>
             <Route path="/" exact component={Auth} />
             <Route path="/cousines" exact component={Cousines} />
-            <Route path="/cousine/:cousineId/products" component={ProductTable} />
-        </Switch>
+            <Route path="/cousine/:cousineId/products" component={Products} />
+            <Route path="/cart" component={Cart} />
+          </Switch>
+        </div>
       </Router>
   </Provider>
 );
