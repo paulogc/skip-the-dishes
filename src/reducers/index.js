@@ -2,14 +2,16 @@ import {
   combineReducers,
 } from 'redux';
 
-import products from '../containers/ProductPage/reducer';
-import cart from '../containers/YourCartPage/reducer';
 import appStatus from './appStatus';
+import authReducer from   './auth';
+import productsReducer from './products';
+import cousinesReducer from './cousines';
 
 const reducers = combineReducers({
+  authReducer,
   appStatus,
-  cart,
-  products,
+  productsReducer,
+  cousinesReducer,
 });
 
 export default reducers;

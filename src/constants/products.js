@@ -1,0 +1,3 @@
+export const PRODUCTS = 'PRODUCTS';
+export const PRODUCTS_LOADING = 'PRODUCTS_LOADING';
+export const PRODUCTS_ERROR = 'PRODUCTS_ERROR';

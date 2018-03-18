@@ -1,1 +1,1 @@
-Case study for Elinvar
+Skip dishes
